@@ -90,8 +90,32 @@ more needs to be written/visualized ...
 
 - The same conditions have been logged, analysed and plotted with this mount.
 - figures/results need to be added still...
+
 ## Week 5 (14sept)
 - ST's "turn vibration insight into faster maintenance decisions" webinar were they go over the IIS3DWB10IS sensor (that might be used later)
+- Looking into the possibility of making a PCB, thinking about how it supports research questions:
+	- Both IIS3DWB and 10IS on the PCB together with MCU to measure power consumption difference between:
+		- Running the AI model on the MCU with the lower power IIS3DWB over different scenarios
+		- Running the AI model on the 10IS sensor which has a higher power consumption but could allow the MCU to stay in a longer deep sleep.
+	- It brings out a GPIO for connecting a piezo crystal which should allow us to excite the mount more reliable and with firmware, which could help to undestand the shifts in resonance peaks
+	- Extreme low power is kept in mind: Low power LDO and load switches to turn of the sensor completely.
+	- Jumpers to isolate different power paths which should allow us to measure power consumption in great detail.
+	- Started looking at the necessary components and making the schematic 
+
+## Week 6 (21sept)
+- Finishing the schematic 
+- Starting and finishing the PCB layout.
+- Ordering the PCBA on JLCPCB
+
+![Schematic|365](media/schematic.png)
+
+![PCB Layout|365](media/PCB-Layout.png)
+
+
+## Week 7 (28sept)
+- 
+
+## Week 8
 
 ## Disclaimer
 - Figures of the logged data are created from a python script that is created with the help of genAI.
