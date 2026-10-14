@@ -95,7 +95,7 @@ more needs to be written/visualized ...
 - ST's "turn vibration insight into faster maintenance decisions" webinar were they go over the IIS3DWB10IS sensor (that might be used later)
 - Looking into the possibility of making a PCB, thinking about how it supports research questions:
 	- Both IIS3DWB and 10IS on the PCB together with MCU to measure power consumption difference between:
-		- Running the AI model on the MCU with the lower power IIS3DWB over different scenarios
+		- Running the AI model on the MCU with the lower po1wer IIS3DWB over different scenarios
 		- Running the AI model on the 10IS sensor which has a higher power consumption but could allow the MCU to stay in a longer deep sleep.
 	- It brings out a GPIO for connecting a piezo crystal which should allow us to excite the mount more reliable and with firmware, which could help to undestand the shifts in resonance peaks
 	- Extreme low power is kept in mind: Low power LDO and load switches to turn of the sensor completely.
@@ -113,9 +113,32 @@ more needs to be written/visualized ...
 
 
 ## Week 7 (28sept)
-- 
+- Ordering 3DWB10IS sensor which was not in stock at JLC PCBA, will be soldered manually later
+- Preparing for programming and testing the custom board
+	- Programmer (Using nRF54L15 DK on-board JLINK debugger)
+	- Power measuring tool (Joulescope JS220 available at Eltorque)
 
-## Week 8
+## Week 8 (5oct)
+- JLCPCB PCBA assembly is finished, following is the xray
+![xray PCBA|365](media/xray1.png)
+
+- Preparing toolchain for programming
+	- Nordic SDK (NCS)
+	- VScode plugin setup
+	- Segger Jlink software
+
+- Preparing basic zephyr application to test board's peripherals (with the help of AI)
+	- blinking LEDs
+	- TEMP sensor i2c reading
+	- 3DWB accel reading
+
+
+## Week 9 (12oct)
+- JLC PCBA arrived, installed on the rig.
+![PCB Layout|365](media/customPCB_onRig.jpg)
 
 ## Disclaimer
 - Figures of the logged data are created from a python script that is created with the help of genAI.
+
+## To Do
+- Piezo crystal for exciting the mount by firmware (for controlled mount testing)
