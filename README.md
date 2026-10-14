@@ -142,3 +142,9 @@ more needs to be written/visualized ...
 
 ## To Do
 - Piezo crystal for exciting the mount by firmware (for controlled mount testing)
+
+## Research questions
+- Measured energy per decision with different firmware and AI embedding decisions, with conclusion/recommendations
+- How much variability in vibration data comes from measuring chain
+- How much compression can we get on CRWU and own dataset
+- What makes a good vibration dataset for self supervised learning
