@@ -137,8 +137,47 @@ more needs to be written/visualized ...
 - JLC PCBA arrived, installed on the rig.
 ![PCB Layout|365](media/customPCB_onRig.jpg)
 
-## Disclaimer
-- Figures of the logged data are created from a python script that is created with the help of genAI.
+
+## Week 10 (19oct)
+- Firmware for collecting data has been written (with the help of AI) and tested
+	- Commands send from python script over SWD
+	- Python script receives data over SWD
+- Some PCB mistakes were fixed
+	- Resoldering pinheaders to make space for the SWD connector
+	- Soldering the 3DWB10IS (Victor soldered by hand)
+	- Discovered I forgot the GND connection on the breakout pins. Only GND connection is UART GND
+- Setting up the rig for more reliable and repeatable measuring of vibrations:
+	- vibration isolated power supply and laptop
+	- Aluminium extrusion is clamped to the table, feets are removed
+![PCB Layout|365](media/clampedRigSetup.jpg)
+## Week 11 (26oct)
+- Data collection firmware has been used to collect data over 2 consecutive days for a first analyses. The data gathering playbook was as follows:
+	- Measure **cold floor noise** when mounted on the puck/rig. (Only motor driver is turned on, but not powering the motor)
+	- **90min warmup** run (to see how frequencies shift when heating up)
+	- **Multiple 10min runs** at different speeds (50Hz, 55Hz, 60Hz) to check for **repeatability/stability**
+	- single axis (Z, before the 3 axises were always recorded. Higher accuracy when single axis is active) and high sample rate (80kHz on sensor B) runs. *No benefit in higher sample rate found*
+	- Measure **warm noise floor** after machine is heated up and **tap test**
+	
+- **RESULTS:**
+	- **The board works** as a measuring instrument and performs per datasheet specifications. The custom board (with MCU, LDO, ...) **does not perform worse** compared to the STEVAL (used earlier) with only the 3DWB on the PCB. (in terms of noise)
+		- ![PCB Layout|365](media/fig16_noise_floors_simple.png)
+		
+	- The **two sensors** (A: 3DWB and B: 3DWB10IS) agree. They measure the same amplitude within 0.2% on X and Y, Z is 5% lower on B.
+		- Above 6kHz sensor A stops measuring but B keeps going (as per datasheet)
+		- ![PCB Layout|365](media/fig17_sensor_a_vs_b_simple.png)
+
+| B ÷ A, band 100 Hz–2 kHz, 10 warm runs |             X |             Y |             Z |
+| -------------------------------------- | ------------: | ------------: | ------------: |
+| mean ± spread                          | 1.002 ± 0.022 | 0.998 ± 0.019 | 0.954 ± 0.022 |
+
+- On the vertical axis: **3/4 of the vibration energy sits above 6.3kHz.**  
+- **Repeatability between warm runs is okay.**
+- **Warm up is important**: Over 90minutes the board warms about 14 degrees Celsius. The  high frequency bands rise consistent on both days, settling after 30min. The low frequencies do not fall consistent over both days.
+	- ![PCB Layout|365](media/fig19_warmup_simple.png)
+
+
+## Relevant data;
+3DWB: 26.8kHz sample rate, 13.4kHz nyquist limit, rated frequency band is 6.3kHz
 
 ## To Do
 - Piezo crystal for exciting the mount by firmware (for controlled mount testing)
@@ -148,3 +187,6 @@ more needs to be written/visualized ...
 - How much variability in vibration data comes from measuring chain
 - How much compression can we get on CRWU and own dataset
 - What makes a good vibration dataset for self supervised learning
+
+## Disclaimer
+- Figures of the logged data are created from a python script that is created with the help of genAI.
